@@ -68,7 +68,7 @@ This is designed for users who want a fast, automated setup without needing more
 6.  **Follow the Prompts:**
     *   **New Username:** Enter the desired username for running `code-server` (default: `coder`).
     *   **New SSH Port:** Enter the port SSH should listen on (default: `2222`).
-    *   **Code Server Host Port:** Enter the port you want to access `code-server` through in your browser (default: `8443`).
+    *   **Code Server Host Port:** Enter the port you want to access `code-server` through in your browser (default: `8080`).
     *   **Python Script URL:** Paste the **RAW** URL for the `generate_compose.py` script. The default is:
         ```
         https://raw.githubusercontent.com/trostmarvin/coder-vps-setup/main/generate_compose.py
