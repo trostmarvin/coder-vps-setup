@@ -98,19 +98,32 @@ apt-get install -y ufw curl wget gnupg ca-certificates python3 python3-pip
 
 # --- Install Docker ---
 print_info "Installing Docker Engine and Compose Plugin..."
+# Add Docker's official GPG key
 install -m 0755 -d /etc/apt/keyrings
 if [ -f /etc/apt/keyrings/docker.gpg ]; then
     rm /etc/apt/keyrings/docker.gpg
 fi
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+# Determine OS ID (e.g., "ubuntu" or "debian")
+OS_ID=$(. /etc/os-release && echo "$ID")
+print_info "Detected OS ID: $OS_ID"
+
+# Download the GPG key using the detected OS ID
+curl -fsSL "https://download.docker.com/linux/${OS_ID}/gpg" | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 chmod a+r /etc/apt/keyrings/docker.gpg
 
+# Set up the repository using the detected OS ID and codename
+print_info "Adding Docker repository for $OS_ID $(. /etc/os-release && echo "$VERSION_CODENAME")"
 echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/${OS_ID} \
   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
   tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# Update apt package index again after adding new repo
 apt-get update
-apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin [[10]]
+
+# Install Docker Engine, CLI, Containerd, and Compose plugin
+print_info "Installing Docker packages..."
+apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 print_info "Starting and enabling Docker service..."
 systemctl enable --now docker
