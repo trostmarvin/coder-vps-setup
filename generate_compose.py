@@ -26,6 +26,7 @@ services:
   code-server:
     image: codercom/code-server:latest # Official image
     container_name: code-server
+    command: ["--cert"]
     environment:
       # Optional: Set passwords via environment variables if desired
       # - PASSWORD=your_strong_password_here # Set a fixed password
