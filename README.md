@@ -4,13 +4,16 @@ automatically setup only coder with docker compose. not using ansible etc., used
 use with caution, check the code before executing.
 
 1. ssh into your vps
+
 2. run
 wget https://raw.githubusercontent.com/trostmarvin/coder-vps-setup/refs/heads/main/setup_entry.sh -O setup_entry.sh
-# OR
-# curl -Lo setup_entry.sh https://raw.githubusercontent.com/trostmarvin/coder-vps-setup/refs/heads/main/setup_entry.sh
-3. run
+OR
+curl -Lo setup_entry.sh https://raw.githubusercontent.com/trostmarvin/coder-vps-setup/refs/heads/main/setup_entry.sh
+
+4. run
 chmod +x setup_entry.sh
-4. run script
+
+6. run script
 sudo ./setup_entry.sh
 
 
