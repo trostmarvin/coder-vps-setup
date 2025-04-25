@@ -10,8 +10,8 @@ set -o pipefail
 # --- Configuration ---
 DEFAULT_USERNAME="coder"
 DEFAULT_SSH_PORT="2222"
-DEFAULT_CODESERVER_HOST_PORT="8443"
-DEFAULT_CODESERVER_CONTAINER_PORT="8443" # Default internal port for code-server image
+DEFAULT_CODESERVER_HOST_PORT="8080"
+DEFAULT_CODESERVER_CONTAINER_PORT="8080" # Default internal port for code-server image
 SETUP_DIR="/srv/code-server"
 PYTHON_GENERATOR_URL="" # Will be prompted
 TEMP_PYTHON_SCRIPT="/tmp/generate_compose.py"
